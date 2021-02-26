@@ -1,15 +1,13 @@
-              {% if customer %}
-               {% for tag in customer.tags %}
-                  {% if tag == 'Decorator' or tag == 'Plumber' or tag == 'Aerospace' or tag == 'Automotive Manufacturing' or tag == 'Carpenter' or tag == 'Construction' or tag == 'Tiler' or tag == 'Reseller' or tag == 'Bodyshop' or tag == 'Electronics' or tag == 'Manufacturing' or tag == 'No Industry' or tag == 'Other Trade' or tag == 'Plasterer' or tag == 'Renewables' or tag == 'Reseller' %}
-                    {% assign customerHasindTag = tag %}
-                  {% else %}
-                  {% endif %}
-               {% endfor %}
-                 
-                 <button type="submit" name="checkout" id="miniCheck" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
-               
-             {% if customerHasindTag == blank %}
-                 {% else %}
-                 
-              {% endif %}            
-            {% endif %}
+{% if customer %}
+ {% for tag in customer.tags %}
+  {% if tag == 'Decorator' or tag == 'Plumber' or tag == 'Aerospace' or tag == 'Automotive Manufacturing' or tag == 'Carpenter' or tag == 'Construction' or tag == 'Tiler' or tag == 'Reseller' or tag == 'Bodyshop' or tag == 'Electronics' or tag == 'Manufacturing' or tag == 'No Industry' or tag == 'Other Trade' or tag == 'Plasterer' or tag == 'Renewables' or tag == 'Reseller' %}
+   {% assign customerHasindTag = tag %}
+  {% else %}
+  {% endif %}
+ {% endfor %}
+
+{% if customerHasindTag == blank %}
+  {% else %}
+     <button type="submit" name="checkout" id="miniCheck" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
+  {% endif %}
+{% endif %}
