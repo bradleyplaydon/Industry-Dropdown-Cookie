@@ -1,37 +1,35 @@
  {% if customer %}
-                      {% for tag in customer.tags %}
-                      {% if tag == 'Decorator' or tag == 'Plumber' or tag == 'Aerospace' or tag == 'Automotive Manufacturing' or tag == 'Carpenter' or tag == 'Construction' or tag == 'Tiler' or tag == 'Reseller' or tag == 'Bodyshop' or tag == 'Electronics' or tag == 'Manufacturing' or tag == 'No Industry' or tag == 'Other Trade' or tag == 'Plasterer' or tag == 'Renewables' or tag == 'Reseller' %}
-                      {% assign customerHasindTag = tag %}
-                      {% else %}
-                      
-                      {% endif %}
-                      {% endfor %}
-                      {% if customerHasindTag == blank %}
-                      <div class="industryDropdownESC">
-                        <br/>
-                        <label for="industrySelector">Please tell us which industry you work in</label>
-                        <!-- notranslate class needed so that if a user from with a different language the script doesn't pass the translated value -->
-                        <select id="industrySelector" class="notranslate form-control industryESC" style="width:100%;height: 2.8em; margin-bottom: 10px;" name="attributes[Industry]" required>
-                            <option selected disabled="disabled" value=""> - Choose your industry - </option>
-                          	 <option value="YOUR_VALUE"></option>
-                        </select>
-                      </div>
-                      <input style="display:none;" id="indChose" name="attributes[Industry Chosen]" value="">
-                      {% endif %}
-                      {% else %} 
-                      <div class="industryDropdownESC">
-                        <br/>
-                        <label for="industrySelector">Please tell us which industry you work in</label>
-                        <!-- notranslate class needed so that if a user from with a different language the script doesn't pass the translated value -->
-                        <select id="industrySelector" class="notranslate form-control industryESC" style="width:100%;height: 2.8em; margin-bottom: 10px;" name="attributes[Industry]" required>
-                            <option selected disabled="disabled" value=""> - Choose your industry - </option>
-                          	<!-- 
-                            <option value="YOUR_VALUE"></option>
-                            -->
-                        </select>
-                      </div>
-                      <input style="display:none;" id="indChose" name="attributes[Industry Chosen]" value="">
-                     {% endif %}
+  {% for tag in customer.tags %}
+   {% if tag == 'Decorator' or tag == 'Plumber' or tag == 'Aerospace' or tag == 'Automotive Manufacturing' or tag == 'Carpenter' or tag == 'Construction' or tag == 'Tiler' or tag == 'Reseller' or tag == 'Bodyshop' or tag == 'Electronics' or tag == 'Manufacturing' or tag == 'No Industry' or tag == 'Other Trade' or tag == 'Plasterer' or tag == 'Renewables' or tag == 'Reseller' %}
+    {% assign customerHasindTag = tag %}
+   {% else %}
+   {% endif %}
+  {% endfor %}
+  {% if customerHasindTag == blank %}
+  <div class="industryDropdown">
+      <br/>
+    <label for="industrySelector">Please tell us which industry you work in</label>
+    <!-- notranslate class needed so that if a user from with a different language the script doesn't pass the translated value -->
+    <select id="industrySelector" class="notranslate form-control industry" style="width:100%;height: 2.8em; margin-bottom: 10px;" name="attributes[Industry]" required>
+      <option selected disabled="disabled" value=""> - Choose your industry - </option>
+      <option value="YOUR_VALUE"></option>
+    </select>
+  </div>
+  <input style="display:none;" id="indChose" name="attributes[Industry Chosen]" value="">
+  {% endif %}
+  {% else %}
+  <div class="industryDropdown">
+   <br/>
+   <label for="industrySelector">Please tell us which industry you work in</label>
+   <!-- notranslate class needed so that if a user from with a different language the script doesn't pass the translated value -->
+   <select id="industrySelector" class="notranslate form-control industry" style="width:100%;height: 2.8em; margin-bottom: 10px;" name="attributes[Industry]" required>
+    <option selected disabled="disabled" value=""> - Choose your industry - </option>
+    <!--  <option value="YOUR_VALUE"></option> -->
+   </select>
+  </div>
+  <input style="display:none;" id="indChose" name="attributes[Industry Chosen]" value="">
+  {% endif %}
+<script>
  /* IF customer clicks back button from checkout */
     $(document).ready(function(){
     var optionChildren = $('#industrySelector').children();
@@ -39,13 +37,13 @@
       if(optionChildren[i].selected == true){
        //console.log(optionChildren[i].text)
        var selectedInd = optionChildren[i].text;
-        
+
       }
-      //console.log(optionChildren[i]); 
+      //console.log(optionChildren[i]);
     }
    $('#indChose').val(selectedInd);
   });
-  
+
   function checkIndustrySel(){
    var optionChildren = $('#industrySelector').children();
     for(var i = 0; i < optionChildren.length; i++){
@@ -58,3 +56,4 @@
   $(document).on('change', function(){
     checkIndustrySel();
   })
+</script>
